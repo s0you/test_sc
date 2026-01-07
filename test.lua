@@ -363,76 +363,68 @@ local function buildWindow()
         Author = "Fish It!",
         Size = UDim2.fromOffset(550, 370),
         Transparent = true,
-        Theme = "Dark",
+        --Theme = "Dark",
         KeySystem = false,
         ScrollBarEnabled = true,
-        --HideSearchBar = false,
+        HideSearchBar = false,
         --User = { Enabled = true, Anonymous = false, Callback = function() end }
-    })
 
-    UI:AddTheme({
-    Name = "My Theme", -- theme name
-    
-    
-    -- More Soon!
-    
-    Accent = Color3.fromHex("#18181b"),
-    Background = Color3.fromHex("#101010"), -- Accent
-    BackgroundTransparency = 0,
-    Outline = Color3.fromHex("#FFFFFF"),
-    Text = Color3.fromHex("#FFFFFF"),
-    Placeholder = Color3.fromHex("#7a7a7a"),
-    Button = Color3.fromHex("#52525b"),
-    Icon = Color3.fromHex("#a1a1aa"),
-    
-    Hover = Color3.fromHex("#FFFFFF"), -- Text
-    BackgroundTransparency = 0,
-    
-    WindowBackground = Color3.fromHex("101010"), -- Background
-    WindowShadow = Color3.fromHex("000000"),
-    
-    DialogBackground = Color3.fromHex("#101010"), -- Background
-    DialogBackgroundTransparency = 0, -- BackgroundTransparency
-    DialogTitle = Color3.fromHex("#FFFFFF"), -- Text
-    DialogContent = Color3.fromHex("#FFFFFF"), -- Text
-    DialogIcon = Color3.fromHex("#a1a1aa"), -- Icon
-    
-    WindowTopbarButtonIcon = Color3.fromHex("a1a1aa"), -- Icon
-    WindowTopbarTitle = Color3.fromHex("FFFFFF"), -- Text
-    WindowTopbarAuthor = Color3.fromHex("FFFFFF"), -- Text
-    WindowTopbarIcon = Color3.fromHex("FFFFFF"), -- Text
-    
-    TabBackground = Color3.fromHex("#FFFFFF"), -- Text
-    TabTitle = Color3.fromHex("#FFFFFF"), -- Text
-    TabIcon = Color3.fromHex("a1a1aa"), -- Icon
-    
-    ElementBackground = Color3.fromHex("#FFFFFF"), -- Text
-    ElementTitle = Color3.fromHex("#FFFFFF"), -- Text
-    ElementDesc = Color3.fromHex("#FFFFFF"), -- Text
-    ElementIcon = Color3.fromHex("#a1a1aa"), -- Icon
-    
-    PopupBackground = Color3.fromHex("#101010"), -- Background
-    PopupBackgroundTransparency = 0, -- BackgroundTransparency
-    PopupTitle = Color3.fromHex("#FFFFFF"), -- Text
-    PopupContent = Color3.fromHex("#FFFFFF"), -- Text
-    PopupIcon = Color3.fromHex("#a1a1aa"), -- Icon
-    
-    DialogBackground = Color3.fromHex("#101010"), -- Background
-    DialogBackgroundTransparency = 0, -- Transparency
-    DialogTitle = Color3.fromHex("#FFFFFF"), -- Text
-    DialogContent = Color3.fromHex("#FFFFFF"), -- Text
-    DialogIcon = Color3.fromHex("#a1a1aa"), -- Icon
-    
-    Toggle = Color3.fromHex("#52525b"), -- Button
-    ToggleBar = Color3.fromHex("#FFFFFF"), -- White
-    
-    Checkbox = Color3.fromHex("#52525b"), -- Button
-    CheckboxIcon = Color3.fromHex("#FFFFFF"), -- White
-    
-    Slider = Color3.fromHex("#52525b"), -- Button
-    SliderThumb = Color3.fromHex("#FFFFFF"), -- White
-    
-})
+         Accent = Color3.fromHex("#18181b"),
+        Background = Color3.fromHex("#101010"), -- Accent
+        BackgroundTransparency = 0,
+        Outline = Color3.fromHex("#FFFFFF"),
+        Text = Color3.fromHex("#FFFFFF"),
+        Placeholder = Color3.fromHex("#7a7a7a"),
+        Button = Color3.fromHex("#52525b"),
+        Icon = Color3.fromHex("#a1a1aa"),
+        
+        Hover = Color3.fromHex("#FFFFFF"), -- Text
+        BackgroundTransparency = 0,
+        
+        WindowBackground = Color3.fromHex("101010"), -- Background
+        WindowShadow = Color3.fromHex("000000"),
+        
+        DialogBackground = Color3.fromHex("#101010"), -- Background
+        DialogBackgroundTransparency = 0, -- BackgroundTransparency
+        DialogTitle = Color3.fromHex("#FFFFFF"), -- Text
+        DialogContent = Color3.fromHex("#FFFFFF"), -- Text
+        DialogIcon = Color3.fromHex("#a1a1aa"), -- Icon
+        
+        WindowTopbarButtonIcon = Color3.fromHex("a1a1aa"), -- Icon
+        WindowTopbarTitle = Color3.fromHex("FFFFFF"), -- Text
+        WindowTopbarAuthor = Color3.fromHex("FFFFFF"), -- Text
+        WindowTopbarIcon = Color3.fromHex("FFFFFF"), -- Text
+        
+        TabBackground = Color3.fromHex("#FFFFFF"), -- Text
+        TabTitle = Color3.fromHex("#FFFFFF"), -- Text
+        TabIcon = Color3.fromHex("a1a1aa"), -- Icon
+        
+        ElementBackground = Color3.fromHex("#FFFFFF"), -- Text
+        ElementTitle = Color3.fromHex("#FFFFFF"), -- Text
+        ElementDesc = Color3.fromHex("#FFFFFF"), -- Text
+        ElementIcon = Color3.fromHex("#a1a1aa"), -- Icon
+        
+        PopupBackground = Color3.fromHex("#101010"), -- Background
+        PopupBackgroundTransparency = 0, -- BackgroundTransparency
+        PopupTitle = Color3.fromHex("#FFFFFF"), -- Text
+        PopupContent = Color3.fromHex("#FFFFFF"), -- Text
+        PopupIcon = Color3.fromHex("#a1a1aa"), -- Icon
+        
+        DialogBackground = Color3.fromHex("#101010"), -- Background
+        DialogBackgroundTransparency = 0, -- Transparency
+        DialogTitle = Color3.fromHex("#FFFFFF"), -- Text
+        DialogContent = Color3.fromHex("#FFFFFF"), -- Text
+        DialogIcon = Color3.fromHex("#a1a1aa"), -- Icon
+        
+        Toggle = Color3.fromHex("#52525b"), -- Button
+        ToggleBar = Color3.fromHex("#FFFFFF"), -- White
+        
+        Checkbox = Color3.fromHex("#52525b"), -- Button
+        CheckboxIcon = Color3.fromHex("#FFFFFF"), -- White
+        
+        Slider = Color3.fromHex("#52525b"), -- Button
+        SliderThumb = Color3.fromHex("#FFFFFF"), -- White
+    })
 
     Window:EditOpenButton({ Title = "Golden X Files", Icon = "circle-check", CornerRadius = UDim.new(0,16), StrokeThickness = 2, Color = ColorSequence.new(Color3.fromHex("9600FF"), Color3.fromHex("AEBAF8")), Draggable = true })
     --Window:Tag({ Title = "BELAJAR BRAYY", Color = Color3.fromHex("#ffcc00") })
