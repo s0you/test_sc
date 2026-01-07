@@ -73,6 +73,46 @@ local state = {
 ----- =======[ LOAD WINDUI ]
 -------------------------------------------
 local Wind
+local function log(msg)
+    print("[WindUI]", msg)
+end
+
+-- local function ensureWindUI()
+--     if Wind then
+--         log("WindUI already loaded (cached)")
+--         return Wind
+--     end
+
+--     local Version = "1.6.63" -- target release
+--     local releaseUrl = "https://github.com/Footagesus/WindUI/releases/download/" .. Version .. "/main.lua"
+--     local rawUrl = "https://raw.githubusercontent.com/Footagesus/WindUI/main/main.lua"
+
+--     log("Trying release version: " .. Version)
+--     local ok, ui = pcall(function()
+--         return loadstring(game:HttpGet(releaseUrl))()
+--     end)
+
+--     if ok and ui then
+--         log("Loaded WindUI from RELEASE (" .. Version .. ")")
+--         Wind = ui
+--         return Wind
+--     end
+
+--     log("Release failed, falling back to RAW main")
+--     ok, ui = pcall(function()
+--         return loadstring(game:HttpGet(rawUrl))()
+--     end)
+
+--     if ok and ui then
+--         log("Loaded WindUI from RAW repository (latest)")
+--         Wind = ui
+--         return Wind
+--     end
+
+--     warn("[WindUI] Failed to load WindUI from both RELEASE and RAW")
+--     return nil
+-- end
+
 local function ensureWindUI()
     if Wind then return Wind end
     
@@ -90,6 +130,7 @@ local function ensureWindUI()
     end
     return Wind
 end
+
 
 -------------------------------------------
 ----- =======[ USER / SERVER INFO ]
@@ -334,24 +375,24 @@ end
 ----- =======[ BUILD WINDOW ]
 -------------------------------------------
 local function buildWindow()
-    local UI = ensureWindUI(); if not UI then warn("WindUI gagal dimuat."); return end
+    local UI = ensureWindUI(); if not UI then warn("WindUI not loaded, please contact the developer!"); return end
     local Window = UI:CreateWindow({
-        Title = "TEST WAHYU GANTENGG",
-        Icon = "circle-check",
-        Author = "SIAPA AJA BOLEH",
-        Size = UDim2.fromOffset(600, 420),
+        Title = "Golden X Files v1.0",
+        Icon = "shield-check",
+        Author = "Fish It!",
+        Size = UDim2.fromOffset(550, 370),
         Transparent = true,
         Theme = "Dark",
         KeySystem = false,
         ScrollBarEnabled = true,
-        HideSearchBar = true,
+        HideSearchBar = false,
         User = { Enabled = true, Anonymous = false, Callback = function() end }
     })
 
-    Window:EditOpenButton({ Title = "WAHYU GANTENG", Icon = "circle-check", CornerRadius = UDim.new(0,16), StrokeThickness = 2, Color = ColorSequence.new(Color3.fromHex("9600FF"), Color3.fromHex("AEBAF8")), Draggable = true })
-    Window:Tag({ Title = "BELAJAR BRAYY", Color = Color3.fromHex("#ffcc00") })
+    Window:EditOpenButton({ Title = "Golden X Files", Icon = "circle-check", CornerRadius = UDim.new(0,16), StrokeThickness = 2, Color = ColorSequence.new(Color3.fromHex("9600FF"), Color3.fromHex("AEBAF8")), Draggable = true })
+    --Window:Tag({ Title = "BELAJAR BRAYY", Color = Color3.fromHex("#ffcc00") })
     UI:SetNotificationLower(true)
-    pcall(function() UI:Notify({ Title = "DZ v1", Content = "Script loaded successfully", Duration = 4, Icon = "circle-check" }) end)
+    pcall(function() UI:Notify({ Title = "Golden X Files", Content = "Script loaded successfully", Duration = 4, Icon = "circle-check" }) end)
 
 
     -------------------------------------------
@@ -361,7 +402,7 @@ local function buildWindow()
     -------------------------------------------
     ----- =======[ ALL TABS ]
     -------------------------------------------
-    local Dev = Window:Tab({ Title = "Developer Info", Icon = "hard-drive" })
+    --local Dev = Window:Tab({ Title = "Developer Info", Icon = "hard-drive" })
     local MainFeautures = Window:Tab({ Title = "Main Features", Icon = "toggle-right" })
     local AutoFavorite = Window:Tab({ Title = "Auto Favorite", Icon = "heart" })
     local Weathershop = Window:Tab({ Title = "Weather", Icon = "cloud-rain" })
@@ -372,44 +413,44 @@ local function buildWindow()
     local Webhooksettings = Window:Tab({ Title = "Webhook", Icon = "webhook" })
 
     -- Set default tab to Developer Info on load
-    pcall(function() Window:SetTab("Dev") end)
+    --pcall(function() Window:SetTab("Dev") end)
 
 
-    -------------------------------------------
-    ----- =======[ DEVELOPER / DISCORD INFO ]
-    -------------------------------------------
-    local InviteAPI = "https://discord.com/api/v10/invites/"
-    local function LookupDiscordInvite(inviteCode)
-        local url = InviteAPI .. inviteCode .. "?with_counts=true"
-        local success, response = pcall(game.HttpGet, game, url)
-        if success then
-            local data = HttpService:JSONDecode(response)
-            return {
-                name = data.guild and data.guild.name or "Unknown",
-                online = data.approximate_presence_count or 0,
-                members = data.approximate_member_count or 0,
-                icon = data.guild and data.guild.icon and ("https://cdn.discordapp.com/icons/"..data.guild.id.."/"..data.guild.icon..".png") or "",
-            }
-        end
-        return nil
-    end
+    -- -------------------------------------------
+    -- ----- =======[ DEVELOPER / DISCORD INFO ]
+    -- -------------------------------------------
+    -- local InviteAPI = "https://discord.com/api/v10/invites/"
+    -- local function LookupDiscordInvite(inviteCode)
+    --     local url = InviteAPI .. inviteCode .. "?with_counts=true"
+    --     local success, response = pcall(game.HttpGet, game, url)
+    --     if success then
+    --         local data = HttpService:JSONDecode(response)
+    --         return {
+    --             name = data.guild and data.guild.name or "Unknown",
+    --             online = data.approximate_presence_count or 0,
+    --             members = data.approximate_member_count or 0,
+    --             icon = data.guild and data.guild.icon and ("https://cdn.discordapp.com/icons/"..data.guild.id.."/"..data.guild.icon..".png") or "",
+    --         }
+    --     end
+    --     return nil
+    -- end
 
-    -- Ganti kode undangan sesuai kebutuhan Anda
-    local inviteData = LookupDiscordInvite("sduVpDyB")
-    if inviteData then
-        Dev:Paragraph({
-            Title = string.format("[DISCORD] %s", inviteData.name),
-            Desc = string.format("Members: %d\nOnline: %d", inviteData.members, inviteData.online),
-            Image = inviteData.icon,
-            ImageSize = 50,
-            Locked = true,
-        })
-    end
+    -- -- Ganti kode undangan sesuai kebutuhan Anda
+    -- local inviteData = LookupDiscordInvite("sduVpDyB")
+    -- if inviteData then
+    --     Dev:Paragraph({
+    --         Title = string.format("[DISCORD] %s", inviteData.name),
+    --         Desc = string.format("Members: %d\nOnline: %d", inviteData.members, inviteData.online),
+    --         Image = inviteData.icon,
+    --         ImageSize = 50,
+    --         Locked = true,
+    --     })
+    -- end
 
-    -------------------------------------------
-    ----- =======[ DEVELOPER / CREDITS ]
-    -------------------------------------------
-    Dev:Paragraph({ Title = "Credits", Desc = "UI: WindUI\nDev: @dzzzet", Locked = true })
+    -- -------------------------------------------
+    -- ----- =======[ DEVELOPER / CREDITS ]
+    -- -------------------------------------------
+    -- Dev:Paragraph({ Title = "Credits", Desc = "UI: WindUI\nDev: @Golden X Files", Locked = true })
     
     -------------------------------------------
     ----- =======[ WEATHER TAB ]
@@ -1196,7 +1237,7 @@ local function buildWindow()
 
                 eventState.originalPosition = hrp.CFrame
                 eventState.platform = Instance.new("Part", workspace)
-                eventState.platform.Name = "DZv1EventPlatform"
+                eventState.platform.Name = "GXFEvent_Platform"
                 eventState.platform.Size = Vector3.new(30, 1, 30)
                 eventState.platform.Position = targetEventPart.Position + Vector3.new(0, 50, 0)
                 eventState.platform.Anchored = true
@@ -1294,7 +1335,7 @@ local function buildWindow()
     -- Save/Load Config (per-username)
     SettingsMisc:Paragraph({ Title = "Config", Desc = "Save/Load per-username.", Locked = true })
     local function getConfigKey()
-        return "DZv1_Config_" .. tostring(player.UserId or player.Name or "User")
+        return "Config_" .. tostring(player.UserId or player.Name or "User")
     end
     local function serialize(tbl)
         local ok, json = pcall(HttpService.JSONEncode, HttpService, tbl)
@@ -1448,10 +1489,10 @@ local function buildWindow()
             ["description"] = string.format("Player **%s** caught a **%s** (%s)!", username, fishName, rarityText),
             ["color"] = tonumber("0x00bfff"),
             ["image"] = { ["url"] = imageUrl },
-            ["footer"] = { ["text"] = "DZv1 Webhook | " .. os.date("%H:%M:%S") }
+            ["footer"] = { ["text"] = "Golden X Files Webhook | " .. os.date("%H:%M:%S") }
         }
         if fields then embed["fields"] = fields end
-        local data = { ["username"] = "DZv1 Fisher - Notification System", ["embeds"] = { embed } }
+        local data = { ["username"] = "Golden X Files - Fishing Notification", ["embeds"] = { embed } }
         
         local requestFunc = syn and syn.request or http and http.request or http_request or request or fluxus and fluxus.request
         if requestFunc then
@@ -1464,7 +1505,7 @@ local function buildWindow()
     -- Webhook input
     Webhooksettings:Input({
         Title = "Discord Webhook URL",
-        Desc = "Enter your Discord webhook URL (full URL or ID/TOKEN format)",
+        Desc = "Enter your Discord webhook URL",
         Placeholder = "https://discord.com/api/webhooks/...",
         Callback = function(text)
             if text == "" then 
@@ -1486,18 +1527,18 @@ local function buildWindow()
 
     -- Compact embed toggle
     local useCompactEmbed = false
-    Webhooksettings:Toggle({
-        Title = "Compact Embed",
-        Desc = "Send smaller embed (fewer fields)",
-        Callback = function(v)
-            useCompactEmbed = v
-        end
-    })
+    -- Webhooksettings:Toggle({
+    --     Title = "Compact Embed",
+    --     Desc = "Send smaller embed (fewer fields)",
+    --     Callback = function(v)
+    --         useCompactEmbed = v
+    --     end
+    -- })
     
     -- Fish category selection
     Webhooksettings:Dropdown({
         Title = "Select Fish Rarities to Notify",
-        Desc = "Choose which fish rarities to send webhook notifications for",
+        Desc = "Choose which fish rarities",
         Values = fishCategories,
         Multi = true,
         AllowNone = true,
@@ -1542,12 +1583,12 @@ local function buildWindow()
             -- Send test webhook
             local WebhookURL = "https://discord.com/api/webhooks/" .. webhookState.webhookPath
             local data = {
-                ["username"] = "DZv1 Fisher - Notification System",
+                ["username"] = "Golden X Files - Fishing Notification!",
                 ["embeds"] = {{
-                    ["title"] = "🧪 Test Webhook",
-                    ["description"] = "This is a test message from DZv1 script!",
+                    ["title"] = "Test Webhook",
+                    ["description"] = "Test webhook successfully!",
                     ["color"] = tonumber("0x00ff00"),
-                    ["footer"] = { ["text"] = "DZv1 Webhook Test | " .. os.date("%H:%M:%S") }
+                    ["footer"] = { ["text"] = "Test | " .. os.date("%H:%M:%S") }
                 }}
             }
             
@@ -1598,10 +1639,10 @@ end
 -- Create window with error handling
 local ok, err = pcall(buildWindow)
 if not ok then 
-    warn("[DZv1] Error: " .. tostring(err))
+    warn("[Debug] Error: " .. tostring(err))
     pcall(function() 
         game.StarterGui:SetCore("SendNotification", { 
-            Title = "DZ v1 Error", 
+            Title = "Debug", 
             Text = "Script error: " .. tostring(err), 
             Duration = 10 
         }) 
