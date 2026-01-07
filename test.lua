@@ -116,7 +116,7 @@ end
 local function ensureWindUI()
     if Wind then return Wind end
     
-    local Version = "1.6.45"
+    local Version = "1.6.63"
     local ok, ui = pcall(function()
         return loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/download/" .. Version .. "/main.lua"))()
     end)
@@ -377,15 +377,29 @@ end
 local function buildWindow()
     local UI = ensureWindUI(); if not UI then warn("WindUI not loaded, please contact the developer!"); return end
     local Window = UI:CreateWindow({
-        Title = "Golden X Files v1.0",
-        Icon = "shield-check",
-        Author = "Fish It!",
+        Title = "Golden X Files | Fish It! | v1.1",
+        --Icon = "shield-check",
+        --Author = "v1.0",
         Size = UDim2.fromOffset(550, 370),
         Transparent = true,
-        Theme = "Crimson",
+        --Theme = "Dark",
+        NewElements = true,
         KeySystem = false,
         ScrollBarEnabled = true,
         HideSearchBar = false,
+        OpenButton = {
+            Title = "OPEN", -- can be changed
+            CornerRadius = UDim.new(0.5,0), -- fully rounded
+            StrokeThickness = 1, -- removing outline
+            Enabled = true, -- enable or disable openbutton
+            Draggable = true,
+            OnlyMobile = false,
+        },
+        Topbar = {
+            Height = 50,
+            ButtonsType = "Mac", -- Default or Mac
+        },
+    
         --User = { Enabled = true, Anonymous = false, Callback = function() end }
     })
 
