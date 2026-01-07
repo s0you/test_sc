@@ -1464,7 +1464,7 @@ local function buildWindow()
     -- Webhook input
     Webhooksettings:Input({
         Title = "Discord Webhook URL",
-        Desc = "Enter your Discord webhook URL (full URL or ID/TOKEN format)",
+        Desc = "Enter your Discord webhook URL",
         Placeholder = "https://discord.com/api/webhooks/...",
         Callback = function(text)
             if text == "" then 
@@ -1486,13 +1486,13 @@ local function buildWindow()
 
     -- Compact embed toggle
     local useCompactEmbed = false
-    Webhooksettings:Toggle({
-        Title = "Compact Embed",
-        Desc = "Send smaller embed (fewer fields)",
-        Callback = function(v)
-            useCompactEmbed = v
-        end
-    })
+    -- Webhooksettings:Toggle({
+    --     Title = "Compact Embed",
+    --     Desc = "Send smaller embed (fewer fields)",
+    --     Callback = function(v)
+    --         useCompactEmbed = v
+    --     end
+    -- })
     
     -- Fish category selection
     Webhooksettings:Dropdown({
