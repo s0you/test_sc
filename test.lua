@@ -358,7 +358,7 @@ end
 local function buildWindow()
     local UI = ensureWindUI(); if not UI then warn("WindUI not loaded, please contact the developer!"); return end
     local Window = UI:CreateWindow({
-        Title = "Golden X Files v1.1",
+        Title = "Golden X Files v1.0",
         Icon = "shield-check",
         Author = "Fish It!",
         Size = UDim2.fromOffset(550, 370),
