@@ -366,7 +366,7 @@ local function buildWindow()
         Theme = "Crimson",
         KeySystem = false,
         ScrollBarEnabled = true,
-        HideSearchBar = false,
+        HideSearchBar = false
         --User = { Enabled = true, Anonymous = false, Callback = function() end }
     })
 
