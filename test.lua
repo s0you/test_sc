@@ -364,22 +364,6 @@ local function buildWindow()
         Size = UDim2.fromOffset(550, 370),
         Transparent = true,
         Theme = "Dark",
-        KeySystem = false,
-        ScrollBarEnabled = true,
-        HideSearchBar = false,
-        --User = { Enabled = true, Anonymous = false, Callback = function() end }
-    })
-
-    local function buildWindow()
-    local UI = ensureWindUI()
-    if not UI then
-        warn("WindUI not loaded, please contact the developer!")
-        return
-    end
-
-    UI:AddTheme({
-        Name = "My Theme",
-
         Accent = Color3.fromHex("#18181b"),
         Background = Color3.fromHex("#101010"),
         BackgroundTransparency = 0,
@@ -426,10 +410,19 @@ local function buildWindow()
         CheckboxIcon = Color3.fromHex("#FFFFFF"),
         Slider = Color3.fromHex("#52525b"),
         SliderThumb = Color3.fromHex("#FFFFFF"),
+        
+        KeySystem = false,
+        ScrollBarEnabled = true,
+        HideSearchBar = false,
+        --User = { Enabled = true, Anonymous = false, Callback = function() end }
     })
 
-    -- APPLY THEME
-    UI:SetTheme("My Theme")
+    local function buildWindow()
+    local UI = ensureWindUI()
+    if not UI then
+        warn("WindUI not loaded, please contact the developer!")
+        return
+    end
 
 
 
