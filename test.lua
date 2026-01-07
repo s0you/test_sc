@@ -76,7 +76,7 @@ local Wind
 local function ensureWindUI()
     if Wind then return Wind end
     
-    local Version = "1.6.45"
+    local Version = "1.6.63"
     local ok, ui = pcall(function()
         return loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/download/" .. Version .. "/main.lua"))()
     end)
@@ -409,7 +409,7 @@ local function buildWindow()
     -------------------------------------------
     ----- =======[ DEVELOPER / CREDITS ]
     -------------------------------------------
-    Dev:Paragraph({ Title = "Credits", Desc = "UI: WindUI\nDev: @dzzzet", Locked = true })
+    Dev:Paragraph({ Title = "Credits", Desc = "UI: WindUI\nDev: @Golden X Files", Locked = true })
     
     -------------------------------------------
     ----- =======[ WEATHER TAB ]
