@@ -361,7 +361,7 @@ local function buildWindow()
     -------------------------------------------
     ----- =======[ ALL TABS ]
     -------------------------------------------
-    local Dev = Window:Tab({ Title = "Developer Info", Icon = "hard-drive" })
+    --local Dev = Window:Tab({ Title = "Developer Info", Icon = "hard-drive" })
     local MainFeautures = Window:Tab({ Title = "Main Features", Icon = "toggle-right" })
     local AutoFavorite = Window:Tab({ Title = "Auto Favorite", Icon = "heart" })
     local Weathershop = Window:Tab({ Title = "Weather", Icon = "cloud-rain" })
@@ -372,44 +372,44 @@ local function buildWindow()
     local Webhooksettings = Window:Tab({ Title = "Webhook", Icon = "webhook" })
 
     -- Set default tab to Developer Info on load
-    pcall(function() Window:SetTab("Dev") end)
+    --pcall(function() Window:SetTab("Dev") end)
 
 
-    -------------------------------------------
-    ----- =======[ DEVELOPER / DISCORD INFO ]
-    -------------------------------------------
-    local InviteAPI = "https://discord.com/api/v10/invites/"
-    local function LookupDiscordInvite(inviteCode)
-        local url = InviteAPI .. inviteCode .. "?with_counts=true"
-        local success, response = pcall(game.HttpGet, game, url)
-        if success then
-            local data = HttpService:JSONDecode(response)
-            return {
-                name = data.guild and data.guild.name or "Unknown",
-                online = data.approximate_presence_count or 0,
-                members = data.approximate_member_count or 0,
-                icon = data.guild and data.guild.icon and ("https://cdn.discordapp.com/icons/"..data.guild.id.."/"..data.guild.icon..".png") or "",
-            }
-        end
-        return nil
-    end
+    -- -------------------------------------------
+    -- ----- =======[ DEVELOPER / DISCORD INFO ]
+    -- -------------------------------------------
+    -- local InviteAPI = "https://discord.com/api/v10/invites/"
+    -- local function LookupDiscordInvite(inviteCode)
+    --     local url = InviteAPI .. inviteCode .. "?with_counts=true"
+    --     local success, response = pcall(game.HttpGet, game, url)
+    --     if success then
+    --         local data = HttpService:JSONDecode(response)
+    --         return {
+    --             name = data.guild and data.guild.name or "Unknown",
+    --             online = data.approximate_presence_count or 0,
+    --             members = data.approximate_member_count or 0,
+    --             icon = data.guild and data.guild.icon and ("https://cdn.discordapp.com/icons/"..data.guild.id.."/"..data.guild.icon..".png") or "",
+    --         }
+    --     end
+    --     return nil
+    -- end
 
-    -- Ganti kode undangan sesuai kebutuhan Anda
-    local inviteData = LookupDiscordInvite("sduVpDyB")
-    if inviteData then
-        Dev:Paragraph({
-            Title = string.format("[DISCORD] %s", inviteData.name),
-            Desc = string.format("Members: %d\nOnline: %d", inviteData.members, inviteData.online),
-            Image = inviteData.icon,
-            ImageSize = 50,
-            Locked = true,
-        })
-    end
+    -- -- Ganti kode undangan sesuai kebutuhan Anda
+    -- local inviteData = LookupDiscordInvite("sduVpDyB")
+    -- if inviteData then
+    --     Dev:Paragraph({
+    --         Title = string.format("[DISCORD] %s", inviteData.name),
+    --         Desc = string.format("Members: %d\nOnline: %d", inviteData.members, inviteData.online),
+    --         Image = inviteData.icon,
+    --         ImageSize = 50,
+    --         Locked = true,
+    --     })
+    -- end
 
-    -------------------------------------------
-    ----- =======[ DEVELOPER / CREDITS ]
-    -------------------------------------------
-    Dev:Paragraph({ Title = "Credits", Desc = "UI: WindUI\nDev: @Golden X Files", Locked = true })
+    -- -------------------------------------------
+    -- ----- =======[ DEVELOPER / CREDITS ]
+    -- -------------------------------------------
+    -- Dev:Paragraph({ Title = "Credits", Desc = "UI: WindUI\nDev: @Golden X Files", Locked = true })
     
     -------------------------------------------
     ----- =======[ WEATHER TAB ]
@@ -1196,7 +1196,7 @@ local function buildWindow()
 
                 eventState.originalPosition = hrp.CFrame
                 eventState.platform = Instance.new("Part", workspace)
-                eventState.platform.Name = "DZv1EventPlatform"
+                eventState.platform.Name = "GXFEvent_Platform"
                 eventState.platform.Size = Vector3.new(30, 1, 30)
                 eventState.platform.Position = targetEventPart.Position + Vector3.new(0, 50, 0)
                 eventState.platform.Anchored = true
@@ -1294,7 +1294,7 @@ local function buildWindow()
     -- Save/Load Config (per-username)
     SettingsMisc:Paragraph({ Title = "Config", Desc = "Save/Load per-username.", Locked = true })
     local function getConfigKey()
-        return "DZv1_Config_" .. tostring(player.UserId or player.Name or "User")
+        return "Config_" .. tostring(player.UserId or player.Name or "User")
     end
     local function serialize(tbl)
         local ok, json = pcall(HttpService.JSONEncode, HttpService, tbl)
@@ -1448,10 +1448,10 @@ local function buildWindow()
             ["description"] = string.format("Player **%s** caught a **%s** (%s)!", username, fishName, rarityText),
             ["color"] = tonumber("0x00bfff"),
             ["image"] = { ["url"] = imageUrl },
-            ["footer"] = { ["text"] = "DZv1 Webhook | " .. os.date("%H:%M:%S") }
+            ["footer"] = { ["text"] = "Golden X Files Webhook | " .. os.date("%H:%M:%S") }
         }
         if fields then embed["fields"] = fields end
-        local data = { ["username"] = "DZv1 Fisher - Notification System", ["embeds"] = { embed } }
+        local data = { ["username"] = "Golden X Files - Fishing Notification", ["embeds"] = { embed } }
         
         local requestFunc = syn and syn.request or http and http.request or http_request or request or fluxus and fluxus.request
         if requestFunc then
@@ -1542,12 +1542,12 @@ local function buildWindow()
             -- Send test webhook
             local WebhookURL = "https://discord.com/api/webhooks/" .. webhookState.webhookPath
             local data = {
-                ["username"] = "DZv1 Fisher - Notification System",
+                ["username"] = "Golden X Files - Fishing Notification!",
                 ["embeds"] = {{
-                    ["title"] = "🧪 Test Webhook",
-                    ["description"] = "This is a test message from DZv1 script!",
+                    ["title"] = "Test Webhook",
+                    ["description"] = "Test webhook successfully!",
                     ["color"] = tonumber("0x00ff00"),
-                    ["footer"] = { ["text"] = "DZv1 Webhook Test | " .. os.date("%H:%M:%S") }
+                    ["footer"] = { ["text"] = "Test | " .. os.date("%H:%M:%S") }
                 }}
             }
             
@@ -1598,10 +1598,10 @@ end
 -- Create window with error handling
 local ok, err = pcall(buildWindow)
 if not ok then 
-    warn("[DZv1] Error: " .. tostring(err))
+    warn("[Debug] Error: " .. tostring(err))
     pcall(function() 
         game.StarterGui:SetCore("SendNotification", { 
-            Title = "DZ v1 Error", 
+            Title = "Debug", 
             Text = "Script error: " .. tostring(err), 
             Duration = 10 
         }) 
