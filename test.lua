@@ -377,11 +377,11 @@ end
 local function buildWindow()
     local UI = ensureWindUI(); if not UI then warn("WindUI not loaded, please contact the developer!"); return end
     local Window = UI:CreateWindow({
-        Title = "Golden X Files | Fish It! | v1.1",
+        Title = "Golden X Files | Fish It!",
         --Icon = "shield-check",
         --Author = "v1.0",
         Size = UDim2.fromOffset(550, 370),
-        Transparent = true,
+        Transparent = false,
         --Theme = "Dark",
         NewElements = true,
         KeySystem = false,
@@ -394,41 +394,74 @@ local function buildWindow()
             Enabled = true, -- enable or disable openbutton
             Draggable = true,
             OnlyMobile = false,
+
+            Color = ColorSequence.new( -- gradient
+                Color3.fromHex("#1c1c1c"), 
+                Color3.fromHex("#e7ff2f")
+            )
         },
         Topbar = {
             Height = 50,
-            ButtonsType = "Mac", -- Default or Mac
-        },
-    
+            ButtonsType = "Mac", 
+        }
         --User = { Enabled = true, Anonymous = false, Callback = function() end }
     })
 
+    UI:AddTheme({
+        Name = "Stylish",
+        WindowBackground = Color3.fromHex("#111010"),
+        
+        TabBackground = Color3.fromHex("#f8fafc"),    
+        TabTitle = Color3.fromHex("#f8fafc"),
+        TabIcon = Color3.fromHex("#f8fafc"),
+        
+        ElementBackground = Color3.fromHex("#f8fafc"),
+        ElementTitle = Color3.fromHex("#f8fafc"),
+        ElementDesc = Color3.fromHex("#cbd5e1"),
+        Placeholder = Color3.fromHex("#94a3b8")
+    })
+    
+    WindUI:SetTheme("Stylish")
+
     Window:EditOpenButton({ Title = "Golden X Files", Icon = "circle-check", CornerRadius = UDim.new(0,16), StrokeThickness = 2, Color = ColorSequence.new(Color3.fromHex("9600FF"), Color3.fromHex("AEBAF8")), Draggable = true })
-    --Window:Tag({ Title = "BELAJAR BRAYY", Color = Color3.fromHex("#ffcc00") })
+    Window:Tag({ Title = "v1.0", Icon = "circle-check", Color = Color3.fromHex("#1c1c1c"), Border = true })
     UI:SetNotificationLower(true)
     pcall(function() UI:Notify({ Title = "Golden X Files", Content = "Script loaded successfully", Duration = 4, Icon = "circle-check" }) end)
 
-
     -------------------------------------------
-    ----- =======[ TAB & MENU ]
-    -------------------------------------------
-
-    -------------------------------------------
-    ----- =======[ ALL TABS ]
+    ----- =======[ SECTION ]
     -------------------------------------------
     --local Dev = Window:Tab({ Title = "Developer Info", Icon = "hard-drive" })
-    local MainFeautures = Window:Tab({ Title = "Main Features", Icon = "toggle-right" })
-    local AutoFavorite = Window:Tab({ Title = "Auto Favorite", Icon = "heart" })
-    local Weathershop = Window:Tab({ Title = "Weather", Icon = "cloud-rain" })
-    local Shop = Window:Tab({ Title = "Shop", Icon = "shopping-cart" })
-    local Teleport = Window:Tab({ Title = "Teleport", Icon = "map" })
-    local Player = Window:Tab({ Title = "Player", Icon = "users-round" })
-    local SettingsMisc = Window:Tab({ Title = "Settings & Misc", Icon = "settings" })
-    local Webhooksettings = Window:Tab({ Title = "Webhook", Icon = "webhook" })
+    local MainFeatureSection = Window:Section({
+        Title = "Main",
+    })
+    local PlayerSection = Window:Section({
+        Title = "Player",
+    })
+    local OtherSection = Window:Section({
+        Title = "Other's",
+    })
+    
+    -- Main Feature
+    local MainFeautures = MainFeatureSection:Tab({ Title = "Fishing Helper", Icon = "fish"}) 
+    local AutoFavorite = MainFeatureSection:Tab({ Title = "Auto Favorite", Icon = "heart" })
+    local AutoEvent = MainFeatureSection:Tab({ Title = "Event", Icon = "calendar-days" })
+
+    -- Player Feature
+    local Teleport = PlayerSection:Tab({ Title = "Teleport", Icon = "map" })
+    local Player = PlayerSection:Tab({ Title = "Player", Icon = "users-round" })
+    
+    -- Other's
+    local Weathershop = OtherSection:Tab({ Title = "Weather", Icon = "cloud-rain" })
+    local Shop = OtherSection:Tab({ Title = "Shop", Icon = "shopping-cart" })
+    local Webhooksettings = OtherSection:Tab({ Title = "Webhook", Icon = "webhook" })
+    local SettingsMisc = OtherSection:Tab({ Title = "Settings", Icon = "settings" })
+    
+    --x
+    local ConfigManager = Window:Tab({ Title = "Config", Icon = "hammer" })
 
     -- Set default tab to Developer Info on load
     --pcall(function() Window:SetTab("Dev") end)
-
 
     -- -------------------------------------------
     -- ----- =======[ DEVELOPER / DISCORD INFO ]
@@ -725,6 +758,8 @@ local function buildWindow()
         Locked = true
     })
     
+    MainFeautures:Space()
+
     local autoFishToggle
     autoFishToggle = MainFeautures:Toggle({ 
         Title = "Auto Fish (Include Perfect Fish)", 
@@ -733,6 +768,8 @@ local function buildWindow()
             if Value then startAutoFish() else stopAutoFish() end
         end
     })
+
+    MainFeautures:Space()
     
     MainFeautures:Toggle({
         Title = "Auto Sell (Threshold Based)",
