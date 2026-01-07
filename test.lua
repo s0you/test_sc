@@ -73,22 +73,44 @@ local state = {
 ----- =======[ LOAD WINDUI ]
 -------------------------------------------
 local Wind
+local function log(msg)
+    print("[WindUI]", msg)
+end
+
 local function ensureWindUI()
-    if Wind then return Wind end
-    
-    local Version = "1.6.63"--"1.6.45"
+    if Wind then
+        log("WindUI already loaded (cached)")
+        return Wind
+    end
+
+    local Version = "1.6.63" -- target release
+    local releaseUrl = "https://github.com/Footagesus/WindUI/releases/download/" .. Version .. "/main.lua"
+    local rawUrl = "https://raw.githubusercontent.com/Footagesus/WindUI/main/main.lua"
+
+    log("Trying release version: " .. Version)
     local ok, ui = pcall(function()
-        return loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/download/" .. Version .. "/main.lua"))()
+        return loadstring(game:HttpGet(releaseUrl))()
     end)
-    if not ok or not ui then
-        ok, ui = pcall(function()
-            return loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/main.lua"))()
-        end)
-    end
-    if ok and ui then 
+
+    if ok and ui then
+        log("Loaded WindUI from RELEASE (" .. Version .. ")")
         Wind = ui
+        return Wind
     end
-    return Wind
+
+    log("Release failed, falling back to RAW main")
+    ok, ui = pcall(function()
+        return loadstring(game:HttpGet(rawUrl))()
+    end)
+
+    if ok and ui then
+        log("Loaded WindUI from RAW repository (latest)")
+        Wind = ui
+        return Wind
+    end
+
+    warn("[WindUI] Failed to load WindUI from both RELEASE and RAW")
+    return nil
 end
 
 -------------------------------------------
