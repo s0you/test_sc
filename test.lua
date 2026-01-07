@@ -76,7 +76,7 @@ local Wind
 local function ensureWindUI()
     if Wind then return Wind end
     
-    local Version = "1.6.63"
+    local Version = "1.6.64"
     local ok, ui = pcall(function()
         return loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/download/" .. Version .. "/main.lua"))()
     end)
@@ -336,9 +336,9 @@ end
 local function buildWindow()
     local UI = ensureWindUI(); if not UI then warn("WindUI gagal dimuat."); return end
     local Window = UI:CreateWindow({
-        Title = "TEST WAHYU GANTENGG",
+        Title = "Golden X Files",
         Icon = "circle-check",
-        Author = "SIAPA AJA BOLEH",
+        Author = "Fish it!",
         Size = UDim2.fromOffset(600, 420),
         Transparent = true,
         Theme = "Dark",
@@ -349,7 +349,7 @@ local function buildWindow()
     })
 
     Window:EditOpenButton({ Title = "WAHYU GANTENG", Icon = "circle-check", CornerRadius = UDim.new(0,16), StrokeThickness = 2, Color = ColorSequence.new(Color3.fromHex("9600FF"), Color3.fromHex("AEBAF8")), Draggable = true })
-    Window:Tag({ Title = "BELAJAR BRAYY", Color = Color3.fromHex("#ffcc00") })
+    --Window:Tag({ Title = "BELAJAR BRAYY", Color = Color3.fromHex("#ffcc00") })
     UI:SetNotificationLower(true)
     pcall(function() UI:Notify({ Title = "DZ v1", Content = "Script loaded successfully", Duration = 4, Icon = "circle-check" }) end)
 
