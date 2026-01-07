@@ -336,10 +336,10 @@ end
 local function buildWindow()
     local UI = ensureWindUI(); if not UI then warn("WindUI not loaded, please contact the developer!"); return end
     local Window = UI:CreateWindow({
-        Title = "GOLDEN X FILES | v1.0",
+        Title = "Golden X Files v1.0",
         Icon = "circle-check",
-        Author = "Fish it!",
-        Size = UDim2.fromOffset(600, 420),
+        Author = "Fish It!",
+        Size = UDim2.fromOffset(550, 370),
         Transparent = true,
         Theme = "Dark",
         KeySystem = false,
