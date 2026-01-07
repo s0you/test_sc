@@ -76,7 +76,7 @@ local Wind
 local function ensureWindUI()
     if Wind then return Wind end
     
-    local Version = "1.6.64"
+    local Version = "1.6.45"
     local ok, ui = pcall(function()
         return loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/download/" .. Version .. "/main.lua"))()
     end)
@@ -334,7 +334,7 @@ end
 ----- =======[ BUILD WINDOW ]
 -------------------------------------------
 local function buildWindow()
-    local UI = ensureWindUI(); if not UI then warn("WindUI not loaded!"); return end
+    local UI = ensureWindUI(); if not UI then warn("WindUI not loaded, please contact the developer!"); return end
     local Window = UI:CreateWindow({
         Title = "Golden X Files",
         Icon = "circle-check",
