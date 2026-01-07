@@ -363,19 +363,12 @@ local function buildWindow()
         Author = "Fish It!",
         Size = UDim2.fromOffset(550, 370),
         Transparent = true,
-        Theme = "Crimson",
+        Theme = "Dark",
         KeySystem = false,
         ScrollBarEnabled = true,
-        HideSearchBar = false
-        --User = { Enabled = true, Anonymous = false, Callback = function() end }
+        HideSearchBar = false,
+        User = { Enabled = true, Anonymous = false, Callback = function() end }
     })
-
-    local function buildWindow()
-    local UI = ensureWindUI()
-    if not UI then
-        warn("WindUI not loaded, please contact the developer!")
-        return
-    end
 
     Window:EditOpenButton({ Title = "Golden X Files", Icon = "circle-check", CornerRadius = UDim.new(0,16), StrokeThickness = 2, Color = ColorSequence.new(Color3.fromHex("9600FF"), Color3.fromHex("AEBAF8")), Draggable = true })
     --Window:Tag({ Title = "BELAJAR BRAYY", Color = Color3.fromHex("#ffcc00") })
