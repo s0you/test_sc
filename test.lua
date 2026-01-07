@@ -1519,7 +1519,7 @@ local function buildWindow()
     -- Fish category selection
     Webhooksettings:Dropdown({
         Title = "Select Fish Rarities to Notify",
-        Desc = "Choose which fish rarities to send webhook notifications for",
+        Desc = "Choose which fish rarities",
         Values = fishCategories,
         Multi = true,
         AllowNone = true,
