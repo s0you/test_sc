@@ -382,11 +382,11 @@ local function buildWindow()
         Author = "Fish It!",
         Size = UDim2.fromOffset(550, 370),
         Transparent = true,
-        Theme = "Dark",
+        Theme = "Crimson",
         KeySystem = false,
         ScrollBarEnabled = true,
         HideSearchBar = false,
-        User = { Enabled = true, Anonymous = false, Callback = function() end }
+        --User = { Enabled = true, Anonymous = false, Callback = function() end }
     })
 
     Window:EditOpenButton({ Title = "Golden X Files", Icon = "circle-check", CornerRadius = UDim.new(0,16), StrokeThickness = 2, Color = ColorSequence.new(Color3.fromHex("9600FF"), Color3.fromHex("AEBAF8")), Draggable = true })
