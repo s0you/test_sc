@@ -334,7 +334,7 @@ end
 ----- =======[ BUILD WINDOW ]
 -------------------------------------------
 local function buildWindow()
-    local UI = ensureWindUI(); if not UI then warn("WindUI gagal dimuat."); return end
+    local UI = ensureWindUI(); if not UI then warn("WindUI not loaded!"); return end
     local Window = UI:CreateWindow({
         Title = "Golden X Files",
         Icon = "circle-check",
@@ -351,7 +351,7 @@ local function buildWindow()
     Window:EditOpenButton({ Title = "WAHYU GANTENG", Icon = "circle-check", CornerRadius = UDim.new(0,16), StrokeThickness = 2, Color = ColorSequence.new(Color3.fromHex("9600FF"), Color3.fromHex("AEBAF8")), Draggable = true })
     --Window:Tag({ Title = "BELAJAR BRAYY", Color = Color3.fromHex("#ffcc00") })
     UI:SetNotificationLower(true)
-    pcall(function() UI:Notify({ Title = "DZ v1", Content = "Script loaded successfully", Duration = 4, Icon = "circle-check" }) end)
+    pcall(function() UI:Notify({ Title = "Golden X Files", Content = "Script loaded successfully", Duration = 4, Icon = "circle-check" }) end)
 
 
     -------------------------------------------
